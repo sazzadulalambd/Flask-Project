@@ -16,7 +16,7 @@ Follow these steps to set up and run the Text to Audio Converter:
 1. **Clone the repository to your local machine:**
 
 ```bash
-   git clone https://github.com/yourusername/text-to-audio-converter.git
+   git clone https://github.com/sazzadulalambd/Flask-Project/tree/main/text-to-audio-converter
    cd text-to-audio-converter
 ```
 
@@ -27,14 +27,14 @@ python -m venv venv
 source venv/bin/activate
 ```
 
-3. **Install dependencies from `requirements.txt` file using pip:**
-   Install the required Python packages:
+3. **Install dependencies from `requirements.txt` file using pip**
+    Install the required Python packages:
 
 ```
 pip install -r requirements.txt
 ```
 
-4. **Run the app with this command in terminal:**
+4. **Run the app with this command in terminal**
    Run the Flask application:
 
 ```
@@ -43,15 +43,13 @@ python app.py
 
 Access the web application in your web browser at http://localhost:5000 or http://127.0.0.1:5000.
 
-_Usage_
+# Usage
 
 1. Enter the text you want to convert to audio in the input form on the homepage.
-
 2. Click the "Convert" button.
-
 3. The application will generate an audio file with the converted text, and you can listen to it on the result page.
 
-_Folder Structure_
+# Folder Structure
 -app.py: The main Flask application script.
 -templates/: HTML templates for the application.
 -static/: Static assets such as CSS files.
@@ -59,7 +57,7 @@ _Folder Structure_
 -requirements.txt: List of Python dependencies.
 -README.md: Project documentation.
 
-_Customization_
+# Customization
 You can customize the application further by modifying the templates, adding additional styling (CSS), or enhancing the functionality.
 
 # Deployment
@@ -73,8 +71,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 # Author
 
 - Sazzadul Alam Shawon
-- GitHub: Your GitHub Profile
-- Website: Your Website
+- GitHub: [Your GitHub Profile](https://github.com/sazzadulalambd)
+- Website: sazzad.naynab.com
 
 # Acknowledgments
 
