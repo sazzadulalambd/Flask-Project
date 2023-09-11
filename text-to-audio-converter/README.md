@@ -51,12 +51,12 @@ Access the web application in your web browser at http://localhost:5000 or http:
 3. The application will generate an audio file with the converted text, and you can listen to it on the result page.
 
 # Folder Structure
--app.py: The main Flask application script.
--templates/: HTML templates for the application.
--static/: Static assets such as CSS files.
--media/: Directory to store generated audio files.
--requirements.txt: List of Python dependencies.
--README.md: Project documentation.
+- app.py: The main Flask application script.
+- templates/: HTML templates for the application.
+- static/: Static assets such as CSS files.
+- media/: Directory to store generated audio files.
+- requirements.txt: List of Python dependencies.
+- README.md: Project documentation.
 
 # Customization
 You can customize the application further by modifying the templates, adding additional styling (CSS), or enhancing the functionality.
