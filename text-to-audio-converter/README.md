@@ -16,7 +16,7 @@ Follow these steps to set up and run the Text to Audio Converter:
 1. **Clone the repository to your local machine:**
 
 ```bash
-   git clone https://github.com/sazzadulalambd/Flask-Project/tree/main/text-to-audio-converter
+   git clone https://github.com/sazzadulalambd/Flask-Project.git
    cd text-to-audio-converter
 ```
 
@@ -71,11 +71,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 # Author
 
 - Sazzadul Alam Shawon
-- GitHub: [Your GitHub Profile](https://github.com/sazzadulalambd)
+- GitHub: [Author GitHub Profile](https://github.com/sazzadulalambd)
 - Website: sazzad.naynab.com
 
 # Acknowledgments
 
 - Special thanks to the Flask and gTTS communities for their contributions to open-source software.
 
-Make sure to replace `yourusername`, `Sazzadul Alam Shawon`, and other placeholders with your actual information. This Markdown file provides comprehensive documentation for your Text to Audio Converter web application, including setup instructions, usage guidance, and project structure information.
+Make sure to replace `sazzadulalambd`, `Sazzadul Alam Shawon`, and other placeholders with your actual information. This Markdown file provides comprehensive documentation for your Text to Audio Converter web application, including setup instructions, usage guidance, and project structure information.
