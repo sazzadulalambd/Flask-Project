@@ -24,8 +24,8 @@ Follow these steps to set up and run the Text to Audio Converter:
 
 ```
 python -m venv .venv
-On Unix or MacOS, use: `source .venv/bin/activate`
-On Windows, use: `venv\Scripts\activate`
+On Unix or MacOS, use: ``source .venv/bin/activate``
+On Windows, use: ``.venv\Scripts\activate``
 ```
 
 3. **Install dependencies from `requirements.txt` file using pip**
