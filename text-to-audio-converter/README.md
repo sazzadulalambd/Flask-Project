@@ -79,4 +79,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Special thanks to the Flask and gTTS communities for their contributions to open-source software.
 
-Make sure to replace `sazzadulalambd`, `Sazzadul Alam Shawon`, and other placeholders with your actual information. This Markdown file provides comprehensive documentation for your Text to Audio Converter web application, including setup instructions, usage guidance, and project structure information.
