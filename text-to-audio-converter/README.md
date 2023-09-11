@@ -24,19 +24,19 @@ Follow these steps to set up and run the Text to Audio Converter:
 
 ```
 python -m venv .venv
-On Unix or MacOS, use: ``source .venv/bin/activate``
-On Windows, use: ``.venv\Scripts\activate``
+On Unix or MacOS, use: source .venv/bin/activate
+On Windows, use: .venv\Scripts\activate
 ```
 
 3. **Install dependencies from `requirements.txt` file using pip**
-    Install the required Python packages:
+Install the required Python packages:
 
 ```
 pip install -r requirements.txt
 ```
 
 4. **Run the app with this command in terminal**
-   Run the Flask application:
+Run the Flask application:
 
 ```
 python app.py
