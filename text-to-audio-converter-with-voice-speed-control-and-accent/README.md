@@ -18,7 +18,7 @@ Follow these steps to set up and run the Text to Audio Converter:
 ```bash
    git clone https://github.com/sazzadulalambd/Flask-Project.git
    cd Flask-Project
-   cd text-to-audio-converter
+   cd text-to-audio-converter-with-voice-speed-control-and-accent
 ```
 
 2. **(Optional) Create and activate a virtual environment:**
