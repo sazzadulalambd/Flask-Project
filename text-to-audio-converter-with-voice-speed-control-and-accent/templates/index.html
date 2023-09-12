@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Audio Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Text to Audio Converter</h1>
+    <form method="POST" action="/convert">
+        <label for="text">Enter Text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50"></textarea><br><br>
+        
+        <label for="voice">Select Accent:</label>
+        <select id="voice" name="voice">
+            {% for voice in voices %}
+            <option value="{{ voice.id }}">{% if voice.name == "Microsoft David Desktop - English (United States)"  %} Male {% endif %}  {% if voice.name == "Microsoft Hazel Desktop - English (Great Britain)"%} Female {% endif %}  {% if voice.name == "Microsoft Zira Desktop - English (United States)"%} Zira  {% endif %} </option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="speed">Speech Speed: <span id="speedValue">1.0</span> </label><br>
+        <input type="range" id="speed" name="speed" min="0.5" max="2.0" step="0.25" value="1">
+        
+        <br><br>
+        <input type="submit" value="Convert">
+    </form>
+
+    <script>
+        // Get the range input element and the span for displaying the value
+        const speedRange = document.getElementById('speed');
+        const speedValue = document.getElementById('speedValue');
+        
+        // Add an event listener to update the label text when the range input changes
+        speedRange.addEventListener('input', () => {
+            speedValue.textContent = speedRange.value;
+        });
+    </script>
+</body>
+</html>

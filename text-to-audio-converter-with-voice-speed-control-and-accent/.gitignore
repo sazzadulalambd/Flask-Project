@@ -1,0 +1,31 @@
+# Virtual environment
+.venv/
+
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Dependency management
+*.egg-info/
+dist/
+build/
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# # Web application specific
+# media/
+# *.mp3
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Ignore these specific packages
+certifi/
+pypiwin32/
+pywin32/
