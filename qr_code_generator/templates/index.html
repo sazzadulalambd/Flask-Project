@@ -8,16 +8,32 @@
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
         #qrcode { margin-top: 20px; }
         #download { margin-top: 20px; display: none; }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <h1>QR Code Generator</h1>
     <form id="qrForm">
-        <input type="text" id="data" placeholder="Enter text or URL" required>
-        <button type="submit">Generate QR Code</button>
+        <input type="text" id="data" style="padding: 12px 20px; border-radius: 25px" placeholder="Enter text or URL" required>
+        <button class="button" type="submit">Generate QR Code</button>
     </form>
     <div id="qrcode"></div>
-    <button id="download">Download QR Code</button>
+    <button class="button" id="download">Download QR Code</button>
+
+    <!-- Contact button -->
+    <a href="/contact_form" class="button">Contact</a>
 
     <script>
         document.getElementById('qrForm').addEventListener('submit', function(event) {

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        input[type=text], input[type=email], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #qrcode {
+            margin-top: 20px;
+            display: none; /* Initially hide QR code */
+        }
+        #download {
+            display: none; /* Initially hide download button */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Contact Form</h2>
+    <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="additional_info">Additional Info:</label>
+        <textarea id="additional_info" name="additional_info" rows="4"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Container for displaying QR code -->
+    <div id="qrcode"></div>
+
+    <!-- Button to download QR code -->
+    <button id="download" onclick="downloadQR()">Download vCard QR Code</button>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            // Submit contact form data to server
+            fetch('/submit_contact', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                // Generate QR code for contact information
+                const qrCodeImg = document.createElement('img');
+                qrCodeImg.src = 'data:image/png;base64,' + result.qr_code;
+                document.getElementById('qrcode').innerHTML = '';
+                document.getElementById('qrcode').appendChild(qrCodeImg);
+                document.getElementById('qrcode').style.display = 'block'; // Show QR code
+                document.getElementById('download').style.display = 'block'; // Show download button
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+
+        function downloadQR() {
+            const qrCodeImgSrc = document.querySelector('#qrcode img').src;
+            const link = document.createElement('a');
+            link.href = qrCodeImgSrc;
+            link.download = 'contact.png'; // Download as vCard file
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
