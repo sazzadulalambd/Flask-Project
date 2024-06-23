@@ -21,16 +21,31 @@
         .button:hover {
             background-color: #45a049;
         }
+        .color-picker { margin-top: 10px; }
+        #data {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            width: 300px;
+            max-width: 100%;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>QR Code Generator</h1>
     <form id="qrForm">
-        <input type="text" id="data" style="padding: 12px 20px; border-radius: 25px" placeholder="Enter text or URL" required>
+        <input type="text" id="data" placeholder="Enter text or URL" required>
         <button class="button" type="submit">Generate QR Code</button>
     </form>
     <div id="qrcode"></div>
     <button class="button" id="download">Download QR Code</button>
+
+    <!-- Color picker for QR code -->
+    <input type="color" id="qrColorPicker" class="color-picker" value="#000000">
+    <label for="qrColorPicker">Select QR Code Color</label>
 
     <!-- Contact button -->
     <a href="/contact_form" class="button">Contact</a>
@@ -39,10 +54,12 @@
         document.getElementById('qrForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const data = document.getElementById('data').value;
+            const qrColor = document.getElementById('qrColorPicker').value;
+
             fetch('/generate_qr', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ data })
+                body: JSON.stringify({ data, qrColor })
             })
             .then(response => response.json())
             .then(result => {
@@ -50,6 +67,7 @@
                 qrCodeImg.src = 'data:image/png;base64,' + result.qr_code;
                 document.getElementById('qrcode').innerHTML = '';
                 document.getElementById('qrcode').appendChild(qrCodeImg);
+                document.getElementById('qrcode').style.display = 'block';
                 document.getElementById('download').style.display = 'block';
                 document.getElementById('download').onclick = function() {
                     const link = document.createElement('a');
@@ -57,6 +75,10 @@
                     link.download = 'qrcode.png';
                     link.click();
                 };
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
             });
         });
     </script>

@@ -41,6 +41,20 @@
             display: none; /* Initially hide download button */
             margin-top: 10px;
         }
+        .color-picker-container {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .color-picker {
+            width: 40px;
+            height: 40px;
+            border: none;
+            cursor: pointer;
+        }
+        .color-picker-label {
+            font-size: 14px;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -58,6 +72,12 @@
         <label for="additional_info">Additional Info:</label>
         <textarea id="additional_info" name="additional_info" rows="4"></textarea>
 
+        <!-- Color picker -->
+        <div class="color-picker-container">
+            <input type="color" id="qrColorPicker" class="color-picker" value="#000000">
+            <label for="qrColorPicker" class="color-picker-label">Select QR Code Color</label>
+        </div>
+
         <button type="submit">Submit</button>
     </form>
 
@@ -71,6 +91,8 @@
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(this);
+            const qrColor = document.getElementById('qrColorPicker').value;
+            formData.append('qr_color', qrColor);
 
             // Submit contact form data to server
             fetch('/submit_contact', {
@@ -79,13 +101,17 @@
             })
             .then(response => response.json())
             .then(result => {
-                // Generate QR code for contact information
-                const qrCodeImg = document.createElement('img');
-                qrCodeImg.src = 'data:image/png;base64,' + result.qr_code;
-                document.getElementById('qrcode').innerHTML = '';
-                document.getElementById('qrcode').appendChild(qrCodeImg);
-                document.getElementById('qrcode').style.display = 'block'; // Show QR code
-                document.getElementById('download').style.display = 'block'; // Show download button
+                if (result.error) {
+                    alert(result.error);
+                } else {
+                    // Generate QR code for contact information with custom color
+                    const qrCodeImg = document.createElement('img');
+                    qrCodeImg.src = 'data:image/png;base64,' + result.qr_code;
+                    document.getElementById('qrcode').innerHTML = '';
+                    document.getElementById('qrcode').appendChild(qrCodeImg);
+                    document.getElementById('qrcode').style.display = 'block'; // Show QR code
+                    document.getElementById('download').style.display = 'block'; // Show download button
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
