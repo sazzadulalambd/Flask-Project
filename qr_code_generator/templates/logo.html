@@ -36,18 +36,16 @@
 </head>
 <body>
     <h1>QR Code Generator</h1>
-    <form id="qrForm" enctype="multipart/form-data">
+    <form id="qrForm">
         <input type="text" id="data" placeholder="Enter text or URL" required>
-        <br>
-        <input type="file" id="logo" accept="image/*">
-        <br>
-        <input type="color" id="qrColorPicker" class="color-picker" value="#000000">
-        <label for="qrColorPicker">Select QR Code Color</label>
-        <br>
         <button class="button" type="submit">Generate QR Code</button>
     </form>
     <div id="qrcode"></div>
     <button class="button" id="download">Download QR Code</button>
+
+    <!-- Color picker for QR code -->
+    <input type="color" id="qrColorPicker" class="color-picker" value="#000000">
+    <label for="qrColorPicker">Select QR Code Color</label>
 
     <!-- Contact button -->
     <a href="/contact_form" class="button">Contact</a>
@@ -55,17 +53,13 @@
     <script>
         document.getElementById('qrForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const formData = new FormData();
-            formData.append('data', document.getElementById('data').value);
-            formData.append('qrColor', document.getElementById('qrColorPicker').value);
-            const logoFile = document.getElementById('logo').files[0];
-            if (logoFile) {
-                formData.append('logo', logoFile);
-            }
+            const data = document.getElementById('data').value;
+            const qrColor = document.getElementById('qrColorPicker').value;
 
             fetch('/generate_qr', {
                 method: 'POST',
-                body: formData
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data, qrColor })
             })
             .then(response => response.json())
             .then(result => {

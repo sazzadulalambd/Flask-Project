@@ -13,7 +13,7 @@
             max-width: 400px;
             margin: auto;
         }
-        input[type=text], input[type=email], textarea {
+        input[type=text], input[type=email], textarea, input[type=file] {
             width: 100%;
             padding: 10px;
             margin: 5px 0 15px 0;
@@ -59,7 +59,7 @@
 </head>
 <body>
     <h2>Contact Form</h2>
-    <form id="contactForm">
+    <form id="contactForm" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -77,6 +77,9 @@
             <input type="color" id="qrColorPicker" class="color-picker" value="#000000">
             <label for="qrColorPicker" class="color-picker-label">Select QR Code Color</label>
         </div>
+
+        <label for="logo">Upload Logo:</label>
+        <input type="file" id="logo" name="logo" accept="image/*">
 
         <button type="submit">Submit</button>
     </form>
