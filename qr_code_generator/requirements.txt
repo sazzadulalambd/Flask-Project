@@ -1,2 +1,3 @@
 Flask==3.0.3
 rcode[pil]==7.4.2
+gunicorn==21.2.0
