@@ -22,7 +22,17 @@
             background-color: #45a049;
         }
         .color-picker { margin-top: 10px; }
-        #data {
+        #data, #ssid, #password {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            width: 300px;
+            max-width: 100%;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        #encryption {
             padding: 12px 20px;
             border-radius: 25px;
             border: 1px solid #ccc;
@@ -37,7 +47,13 @@
 <body>
     <h1>QR Code Generator</h1>
     <form id="qrForm" enctype="multipart/form-data">
-        <input type="text" id="data" placeholder="Enter text or URL" required>
+        <input type="text" id="ssid" placeholder="Enter WiFi SSID" required>
+        <input type="text" id="password" placeholder="Enter WiFi Password" required>
+        <select id="encryption" required>
+            <option value="WPA">WPA/WPA2</option>
+            <option value="WEP">WEP</option>
+            <option value="nopass">None</option>
+        </select>
         <br>
         <input type="file" id="logo" accept="image/*">
         <br>
@@ -49,22 +65,20 @@
     <div id="qrcode"></div>
     <button class="button" id="download">Download QR Code</button>
 
-    <!-- button -->
-    <a href="/contact_form" class="button">Contact</a>
-    <a href="/wifi" class="button">wifi</a>
-
     <script>
         document.getElementById('qrForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData();
-            formData.append('data', document.getElementById('data').value);
+            formData.append('ssid', document.getElementById('ssid').value);
+            formData.append('password', document.getElementById('password').value);
+            formData.append('encryption', document.getElementById('encryption').value);
             formData.append('qrColor', document.getElementById('qrColorPicker').value);
             const logoFile = document.getElementById('logo').files[0];
             if (logoFile) {
                 formData.append('logo', logoFile);
             }
 
-            fetch('/generate_qr', {
+            fetch('/generate_wifi_qr', {
                 method: 'POST',
                 body: formData
             })

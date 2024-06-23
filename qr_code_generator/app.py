@@ -77,6 +77,30 @@ def generate_qr():
 
     return jsonify({'qr_code': img_str})
 
+
+@app.route('/wifi')
+def wifi_form():
+    return render_template('wifi.html')
+
+# Endpoint to generate WiFi QR code
+@app.route('/generate_wifi_qr', methods=['POST'])
+def generate_wifi_qr():
+    ssid = request.form.get('ssid')
+    password = request.form.get('password')
+    encryption = request.form.get('encryption')
+    qr_color = request.form.get('qrColor', '#000000')
+    logo = request.files.get('logo')
+
+    if not ssid or not encryption:
+        return jsonify({'error': 'SSID and encryption type are required'}), 400
+
+    # Format the WiFi QR code data string
+    wifi_data = f"WIFI:T:{encryption};S:{ssid};P:{password};H:;"
+
+    img_str = generate_qr_code(wifi_data, qr_color, logo)
+
+    return jsonify({'qr_code': img_str})
+
 # Start the Flask application
 if __name__ == '__main__':
     app.run(debug=True)
