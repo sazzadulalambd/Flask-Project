@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        #qrcode { margin-top: 20px; }
+        #download { margin-top: 20px; display: none; }
+    </style>
+</head>
+<body>
+    <h1>QR Code Generator</h1>
+    <form id="qrForm">
+        <input type="text" id="data" placeholder="Enter text or URL" required>
+        <button type="submit">Generate QR Code</button>
+    </form>
+    <div id="qrcode"></div>
+    <button id="download">Download QR Code</button>
+
+    <script>
+        document.getElementById('qrForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = document.getElementById('data').value;
+            fetch('/generate_qr', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data })
+            })
+            .then(response => response.json())
+            .then(result => {
+                const qrCodeImg = document.createElement('img');
+                qrCodeImg.src = 'data:image/png;base64,' + result.qr_code;
+                document.getElementById('qrcode').innerHTML = '';
+                document.getElementById('qrcode').appendChild(qrCodeImg);
+                document.getElementById('download').style.display = 'block';
+                document.getElementById('download').onclick = function() {
+                    const link = document.createElement('a');
+                    link.href = qrCodeImg.src;
+                    link.download = 'qrcode.png';
+                    link.click();
+                };
+            });
+        });
+    </script>
+</body>
+</html>
