@@ -48,3 +48,16 @@ This is a simple web application built with Flask to generate and download QR co
 
 4. **A QR code will be displayed. Click on "Download QR Code" to download the QR code as a PNG file.**
 
+# License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+# Author
+
+- Sazzadul Alam Shawon
+- GitHub: [Author GitHub Profile](https://github.com/sazzadulalambd)
+- Website: sazzad.naynab.com
+
+# Acknowledgments
+
+- Special thanks to the Flask and gTTS communities for their contributions to open-source software.
